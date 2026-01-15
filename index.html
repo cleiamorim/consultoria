@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- Declaração do tipo de documento HTML5 -->
+<html lang="pt-br">
+<!-- Idioma da página definido como português do Brasil -->
+
+<head>
+    <!-- Área de configurações e metadados da página -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Importa a biblioteca Font Awesome para ícones -->
+    
+    <meta charset="UTF-8">
+    <!-- Define a codificação de caracteres como UTF-8 (suporta acentos e caracteres especiais) -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configura viewport para responsividade em dispositivos móveis -->
+    
+    <title>Prof. Clei Amorim</title>
+    <!-- Título que aparece na aba do navegador -->
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- Link para o arquivo CSS externo com estilos da página -->
+</head>
+
+<body>
+    <!-- Corpo principal do documento onde fica o conteúdo visível -->
+
+    <!-- Cabeçalho da página -->
+    <header>
+        <div>
+            <img src="fotos/logo.png" alt="logotipo" width="200" height="100">
+            <!-- Logo da empresa/consultor com atributos alt (acessibilidade), width e height (dimensões) -->
+        </div>
+        <nav>
+            <!-- Menu de navegação principal -->
+            <a href="#inicio">Início</a>
+            <!-- Link âncora para seção Início -->
+            <a href="#servicos">Serviços</a>
+            <!-- Link âncora para seção Serviços -->
+            <a href="#sobre">Sobre</a>
+            <!-- Link âncora para seção Sobre -->
+            <a href="#contato" class="btn-contato">Contato</a>
+            <!-- Link âncora para seção Contato com classe especial para estilização -->
+        </nav>
+    </header>
+
+    <!-- Seção Hero/Banner principal -->
+    <section id="inicio" class="hero">
+        <!-- ID para navegação por âncora, classe para estilização CSS -->
+        <div class="hero-content">
+            <!-- Container para conteúdo do hero -->
+            <h1>Transforme sua empresa com dados e tecnologia</h1>
+            <!-- Título principal da página -->
+            <p>Consultoria especializada em BI, dados e capacitação profissional.</p>
+            <!-- Subtítulo/descrição -->
+            <a href="#servicos" class="cta-button">Conheça Nossas Soluções</a>
+            <!-- Botão de Call-to-Action (chamada para ação) -->
+        </div>
+    </section>
+
+    <!-- Seção de Serviços -->
+    <section id="servicos" class="container">
+        <!-- ID para navegação, classe container para layout responsivo -->
+        <h2>Nossos Serviços</h2>
+        <!-- Título da seção -->
+        <div class="cards-grid">
+            <!-- Container para os cards em grid -->
+            
+            <div class="card">
+                <!-- Card individual 1 -->
+                <h3>🎲 Analise de dados</h3>
+                <!-- Título do serviço com emoji -->
+                <p>Analises de dados para tomada de decisão estratégica.</p>
+                <!-- Descrição do serviço -->
+            </div>
+            
+            <div class="card">
+                <!-- Card individual 2 -->
+                <h3>📊 Criação de dashboards</h3>
+                <p>Desenvolvimento de dashboards interativos para visualização de dados.</p>
+                <!-- ATENÇÃO: Parece haver inconsistência entre título e descrição aqui -->
+            </div>
+            
+            <div class="card">
+                <!-- Card individual 3 -->
+                <h3>👨‍🏫 Treinamento e capacitação</h3>
+                <p>Capacitação profissional em tecnologia e análise de dados.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="container bg-light">
+        <!-- Classe bg-light provavelmente para fundo claro diferente -->
+        <h2>Sobre mim</h2>
+        <!-- Título da seção -->
+        <p>Analista de Sistemas e Consultor com mais de uma decada de experiencia. Especialista em Análise de Dados e Desenvolvimento Web, com ampla experiência em Power BI, SQL e Python. Professor e criador de conteúdos focados em tecnologia e consultoria de TI.</p>
+        <!-- Texto descritivo -->
+    </section>
+    
+    <!-- Seção do Botão do WhatsApp (Flutuante) -->
+    <section>
+        <!-- Observação: Esta seção poderia ser um div pois não tem título próprio -->
+        <a href="https://wa.me/5531992975647?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20consultoria%20ou%20serviços." 
+           class="btn-whatsapp" 
+           target="_blank">
+           <!-- Link do WhatsApp com número, texto pré-definido e target="_blank" para abrir em nova aba -->
+           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Botão WhatsApp">
+           <!-- Ícone do WhatsApp (importado de URL externa) -->
+        </a>
+    </section>
+
+    <!-- Seção de Contato -->
+    <section id="contato" class="container">
+        <h2>Fale Conosco</h2>
+        <!-- Formulário de contato -->
+<form id="formContato" action="https://formsubmit.co/profcleiamorim@gmail.com" method="POST">
+
+    <input type="hidden" name="_captcha" value="false"> <input type="hidden" name="_template" value="table"> <input type="hidden" name="_subject" value="Novo Lead do Site (Local)">
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+
+    <label for="mensagem">Mensagem:</label>
+    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como podemos ajudar?" required></textarea>
+
+    <button type="button" onclick="validarFormulario()">Enviar Mensagem</button>
+</form>
+    </section>
+
+    <!-- Rodapé da página -->
+    <footer>
+        <div class="footer-content">
+            <!-- Container para organizar conteúdo do rodapé -->
+            <p>&copy; 2024 Professor Clei Amorim. Todos os direitos reservados.</p>
+            <!-- Texto de copyright com entidade HTML &copy; para símbolo © -->
+            
+            <div class="social-icons">
+                <!-- Container para ícones de redes sociais -->
+                
+                <a href="https://www.instagram.com/profcleiamorim" target="_blank" aria-label="Instagram">
+                    <!-- aria-label melhora acessibilidade para leitores de tela -->
+                    <i class="fa-brands fa-instagram"></i>
+                    <!-- Ícone do Instagram do Font Awesome -->
+                </a>
+
+
+                <a href="https://www.linkedin.com/in/cleiamorim/" target="_blank" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+
+                <a href="https://github.com/cleiamorim" target="_blank" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inclusão do arquivo JavaScript -->
+    <script src="script.js"></script>
+    <!-- O JavaScript é carregado no final do body para não bloquear renderização -->
+</body>
+</html>
