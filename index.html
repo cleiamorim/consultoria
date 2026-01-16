@@ -1,166 +1,243 @@
 <!DOCTYPE html>
-<!-- Declaração do tipo de documento HTML5 -->
 <html lang="pt-br">
-<!-- Idioma da página definido como português do Brasil -->
-
 <head>
-    <!-- Área de configurações e metadados da página -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Importa a biblioteca Font Awesome para ícones -->
-    
     <meta charset="UTF-8">
-    <!-- Define a codificação de caracteres como UTF-8 (suporta acentos e caracteres especiais) -->
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Configura viewport para responsividade em dispositivos móveis -->
+    <title>Clei Amorim | Consultoria e Treinamentos em Dados</title>
     
-    <title>Prof. Clei Amorim</title>
-    <!-- Título que aparece na aba do navegador -->
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- Link para o arquivo CSS externo com estilos da página -->
+    <link rel="icon" href="fotos/favicon.png" type="image/png">
 </head>
-
 <body>
-    <!-- Corpo principal do documento onde fica o conteúdo visível -->
 
-    <!-- Cabeçalho da página -->
     <header>
-        <div>
-            <img src="fotos/logo.png" alt="logotipo" width="200" height="100">
-            <!-- Logo da empresa/consultor com atributos alt (acessibilidade), width e height (dimensões) -->
+        <div class="container flex-between">
+            <div class="logo">
+                <a href="#inicio">
+                    <img class="logo" src="fotos/logo.png" alt="logo" width="200" height="50">
+                </a>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Quem Sou</a></li>
+                    <li><a href="#servicos">Soluções</a></li>
+                    <li><a href="#contato" class="btn-nav">Solicitar Proposta</a></li>
+                </ul>
+                <div class="mobile-menu-icon"><i class="fa-solid fa-bars"></i></div>
+            </nav>
         </div>
-        <nav>
-            <!-- Menu de navegação principal -->
-            <a href="#inicio">Início</a>
-            <!-- Link âncora para seção Início -->
-            <a href="#servicos">Serviços</a>
-            <!-- Link âncora para seção Serviços -->
-            <a href="#sobre">Sobre</a>
-            <!-- Link âncora para seção Sobre -->
-            <a href="#contato" class="btn-contato">Contato</a>
-            <!-- Link âncora para seção Contato com classe especial para estilização -->
-        </nav>
     </header>
 
-    <!-- Seção Hero/Banner principal -->
     <section id="inicio" class="hero">
-        <!-- ID para navegação por âncora, classe para estilização CSS -->
-        <div class="hero-content">
-            <!-- Container para conteúdo do hero -->
-            <h1>Transforme sua empresa com dados e tecnologia</h1>
-            <!-- Título principal da página -->
-            <p>Consultoria especializada em BI, dados e capacitação profissional.</p>
-            <!-- Subtítulo/descrição -->
-            <a href="#servicos" class="cta-button">Conheça Nossas Soluções</a>
-            <!-- Botão de Call-to-Action (chamada para ação) -->
-        </div>
-    </section>
-
-    <!-- Seção de Serviços -->
-    <section id="servicos" class="container">
-        <!-- ID para navegação, classe container para layout responsivo -->
-        <h2>Nossos Serviços</h2>
-        <!-- Título da seção -->
-        <div class="cards-grid">
-            <!-- Container para os cards em grid -->
-            
-            <div class="card">
-                <!-- Card individual 1 -->
-                <h3>🎲 Analise de dados</h3>
-                <!-- Título do serviço com emoji -->
-                <p>Analises de dados para tomada de decisão estratégica.</p>
-                <!-- Descrição do serviço -->
-            </div>
-            
-            <div class="card">
-                <!-- Card individual 2 -->
-                <h3>📊 Criação de dashboards</h3>
-                <p>Desenvolvimento de dashboards interativos para visualização de dados.</p>
-                <!-- ATENÇÃO: Parece haver inconsistência entre título e descrição aqui -->
-            </div>
-            
-            <div class="card">
-                <!-- Card individual 3 -->
-                <h3>👨‍🏫 Treinamento e capacitação</h3>
-                <p>Capacitação profissional em tecnologia e análise de dados.</p>
+        <div class="overlay"></div>
+        <div class="container hero-content">
+            <h2>Transforme Dados em <br>Decisões Estratégicas</h2>
+            <p>Especialista em capacitação corporativa e implementação de cultura Data Driven com Power BI, Excel e Python.</p>
+            <div class="hero-btns">
+                <a href="#servicos" class="btn-primary">Nossas Soluções</a>
+                <a href="#sobre" class="btn-outline">Conheça o Especialista</a>
             </div>
         </div>
     </section>
 
-    <!-- Seção Sobre -->
-    <section id="sobre" class="container bg-light">
-        <!-- Classe bg-light provavelmente para fundo claro diferente -->
-        <h2>Sobre mim</h2>
-        <!-- Título da seção -->
-        <p>Analista de Sistemas e Consultor com mais de uma decada de experiencia. Especialista em Análise de Dados e Desenvolvimento Web, com ampla experiência em Power BI, SQL e Python. Professor e criador de conteúdos focados em tecnologia e consultoria de TI.</p>
-        <!-- Texto descritivo -->
-    </section>
-    
-    <!-- Seção do Botão do WhatsApp (Flutuante) -->
-    <section>
-        <!-- Observação: Esta seção poderia ser um div pois não tem título próprio -->
-        <a href="https://wa.me/5531992975647?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20consultoria%20ou%20serviços." 
-           class="btn-whatsapp" 
-           target="_blank">
-           <!-- Link do WhatsApp com número, texto pré-definido e target="_blank" para abrir em nova aba -->
-           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Botão WhatsApp">
-           <!-- Ícone do WhatsApp (importado de URL externa) -->
-        </a>
-    </section>
-
-    <!-- Seção de Contato -->
-    <section id="contato" class="container">
-        <h2>Fale Conosco</h2>
-        <!-- Formulário de contato -->
-<form id="formContato" action="https://formsubmit.co/profcleiamorim@gmail.com" method="POST">
-
-    <input type="hidden" name="_captcha" value="false"> <input type="hidden" name="_template" value="table"> <input type="hidden" name="_subject" value="Novo Lead do Site (Local)">
-
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
-
-    <label for="mensagem">Mensagem:</label>
-    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como podemos ajudar?" required></textarea>
-
-    <button type="button" onclick="validarFormulario()">Enviar Mensagem</button>
-</form>
+    <section class="stats">
+        <div class="container grid-4">
+            <div class="stat-item">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <h3>+14 Anos</h3>
+                <p>de Experiência</p>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-building"></i>
+                <h3>Grandes Clientes</h3>
+                <p>Vale, Ambev, Arcelor</p>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-users"></i>
+                <h3>+2.000</h3>
+                <p>Alunos Capacitados</p>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>100%</h3>
+                <p>Foco em Resultado</p>
+            </div>
+        </div>
     </section>
 
-    <!-- Rodapé da página -->
-    <footer>
-        <div class="footer-content">
-            <!-- Container para organizar conteúdo do rodapé -->
-            <p>&copy; 2024 Professor Clei Amorim. Todos os direitos reservados.</p>
-            <!-- Texto de copyright com entidade HTML &copy; para símbolo © -->
-            
-            <div class="social-icons">
-                <!-- Container para ícones de redes sociais -->
+    <section id="sobre" class="section-padding bg-modern-gray">
+        <div class="container grid-2">
+            <div class="sobre-img">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Clei Amorim em sala de aula">
+            </div>
+            <div class="sobre-text">
+                <h6>SOBRE CLEI AMORIM</h6>
+                <h2>A ponte entre a Tecnologia e o Negócio</h2>
                 
-                <a href="https://www.instagram.com/profcleiamorim" target="_blank" aria-label="Instagram">
-                    <!-- aria-label melhora acessibilidade para leitores de tela -->
-                    <i class="fa-brands fa-instagram"></i>
-                    <!-- Ícone do Instagram do Font Awesome -->
-                </a>
-
-
-                <a href="https://www.linkedin.com/in/cleiamorim/" target="_blank" aria-label="LinkedIn">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-
-                <a href="https://github.com/cleiamorim" target="_blank" aria-label="GitHub">
-                    <i class="fa-brands fa-github"></i>
-                </a>
+                <p>Com uma carreira consolidada em <strong>Análise de dados e BI</strong>, atuo na convergência estratégica entre tecnologia e capital humano. Minha trajetória une a <strong>didática de professor em escolas técnicas</strong> à visão prática da consultoria corporativa.</p>
+                
+                <p>Essa dualidade me permite não apenas implementar soluções, mas <strong>desmistificar a cultura de dados</strong>. Já capacitei equipes de grandes players do mercado, garantindo que operem com autonomia e máxima eficiência utilizando a <strong>Microsoft Power Platform</strong>.</p>
+                
+                <ul class="lista-check">
+                    <li><i class="fa-solid fa-check"></i> Especialista em Power BI e Excel Avançado</li>
+                    <li><i class="fa-solid fa-check"></i> Consultoria em Automação de Processos</li>
+                    <li><i class="fa-solid fa-check"></i> Metodologia prática focada no mercado</li>
+                </ul>
+                
+                <a href="https://www.linkedin.com/in/cleiamorim/" target="_blank" class="btn-text">Ver Perfil no LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
             </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="section-padding">
+    <div class="container text-center">
+        <h2>Nossas Soluções</h2>
+        <div class="divider"></div>
+    </div>
+
+    <div class="container grid-3 mt-50">
+        
+        <div class="card-servico">
+            <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+            <h3>Dashboards Interativos</h3>
+            <p>Desenvolvimento de painéis de dados visuais e intuitivos para suporte à decisão.</p>
+            <a href="https://wa.me/5531992975647?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20desenvolvimento%20de%20Dashboards." target="_blank" class="btn-text">Solicitar Orçamento <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card-servico">
+            <div class="icon-box"><i class="fa-solid fa-building-user"></i></div>
+            <h3>Treinamentos Corporativos</h3>
+            <p>Capacitação para empresas nas modalidades online (ao vivo) e presencial.</p>
+            <a href="https://wa.me/5531992975647?text=Olá!%20Tenho%20interesse%20em%20Treinamentos%20Corporativos%20para%20minha%20equipe." target="_blank" class="btn-text">Saber Mais <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card-servico">
+            <div class="icon-box"><i class="fa-solid fa-user-graduate"></i></div>
+            <h3>Mentorias Individuais</h3>
+            <p>Aulas particulares e acompanhamento focado na evolução da sua carreira.</p>
+            <a href="https://wa.me/5531992975647?text=Olá!%20Gostaria%20de%20informações%20sobre%20Mentorias%20Individuais." target="_blank" class="btn-text">Ver Disponibilidade <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card-servico">
+            <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3>Apps Low-Code</h3>
+            <p>Criação de aplicativos empresariais ágeis utilizando Microsoft Power Apps.</p>
+            <a href="https://wa.me/5531992975647?text=Olá!%20Quero%20entender%20como%20os%20Apps%20Low-Code%20podem%20ajudar%20meu%20negócio." target="_blank" class="btn-text">Solicitar Proposta <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card-servico">
+            <div class="icon-box"><i class="fa-solid fa-robot"></i></div>
+            <h3>Automação de Processos</h3>
+            <p>Otimização de fluxos de trabalho e tarefas repetitivas com Power Automate.</p>
+            <a href="https://wa.me/5531992975647?text=Olá!%20Gostaria%20de%20automatizar%20processos%20com%20Power%20Automate." target="_blank" class="btn-text">Otimizar Processos <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card-servico">
+            <div class="icon-box"><i class="fa-brands fa-microsoft"></i></div>
+            <h3>Especialista Power Platform</h3>
+            <p>Consultoria completa e integração de soluções do ecossistema Microsoft.</p>
+            <a href="https://wa.me/5531992975647?text=Olá!%20Preciso%20de%20uma%20consultoria%20especializada%20em%20Power%20Platform." target="_blank" class="btn-text">Falar com Especialista <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+</section>
+
+    <section class="cta-banner">
+        <div class="container flex-between">
+            <div>
+                <h2>Pronto para elevar o nível da sua equipe?</h2>
+                <p>Agende uma conversa e descubra como podemos ajudar.</p>
+            </div>
+            <a href="https://wa.me/5531992975647?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20seus%20serviços." target="_blank" class="btn-white">Falar pelo WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="contato" class="section-padding bg-light">
+        <div class="container grid-2">
+            
+            <div class="contato-info">
+                <h2>Vamos conversar?</h2>
+                <p style="margin-bottom: 30px;">Preencha o formulário ou utilize nossos canais diretos.</p>
+                
+                <div class="info-item">
+                    <div class="icon-box-small">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <strong>Localização</strong>
+                        <p>Atendimento Online & Presencial (MG)</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon-box-small">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                        <strong>E-mail</strong>
+                        <p>
+                            <a href="mailto:clei@cleiamorim.com.br" class="link-contato">clei@cleiamorim.com.br</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="icon-box-small">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p>
+                            <a href="https://wa.me/5531992975647?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20seus%20serviços." target="_blank" class="link-contato">(31) 99297-5647</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+    <form class="form-corp" id="formContato" action="https://formsubmit.co/clei@cleiamorim.com.br" method="POST">
+        <input type="hidden" name="_next" value="https://cleiamorim.com.br">
+        
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        
+        <div class="form-group">
+            <input type="text" name="name" id="nome" placeholder="Nome da Pessoa / Empresa" required>
+        </div>
+        
+        <div class="form-group">
+            <input type="email" name="email" id="email" placeholder="E-mail para contato" required>
+        </div>
+        
+        <div class="form-group">
+            <textarea name="message" id="mensagem" placeholder="Como posso ajudar?" rows="5" required></textarea>
+        </div>
+
+        <button type="button" class="btn-primary" id="btnEnviar" onclick="validarFormulario()">Enviar Mensagem</button>
+    </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                 </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/profcleiamorim" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/cleiamorim/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/cleiamorim" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+        <div class="copy">
+            <p>&copy; 2026 Clei Amorim. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Inclusão do arquivo JavaScript -->
-    <script src="script.js"></script>
-    <!-- O JavaScript é carregado no final do body para não bloquear renderização -->
-</body>
+    <a href="https://wa.me/5531992975647?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20seus%20serviços." class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
+    <script src="script.js"></script>
+</body>
 </html>
