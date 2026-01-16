@@ -128,7 +128,7 @@ header {
 
 /* Ajuste sutil na Logo */
 .logo img { 
-    height: 60px; /* Aumente este valor até ficar do tamanho ideal */
+    height: 200px; /* Aumente este valor até ficar do tamanho ideal */
     width: auto; 
     transition: 0.3s; 
 }
@@ -459,4 +459,5 @@ footer {
     .flex-between { flex-direction: column; gap: 20px; text-align: center; }
     .stats { margin-top: 0; }
 }
+
 
