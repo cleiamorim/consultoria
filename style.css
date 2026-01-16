@@ -128,9 +128,9 @@ header {
 
 /* Ajuste sutil na Logo */
 .logo img { 
-    height: 48px; 
+    height: 60px; /* Aumente este valor até ficar do tamanho ideal */
     width: auto; 
-    transition: transform 0.3s ease;
+    transition: 0.3s; 
 }
 .logo img:hover { transform: scale(1.03); }
 
@@ -459,3 +459,4 @@ footer {
     .flex-between { flex-direction: column; gap: 20px; text-align: center; }
     .stats { margin-top: 0; }
 }
+
