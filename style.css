@@ -1,280 +1,461 @@
-/* SELETOR UNIVERSAL (*): Aplica essas regras a TODOS os elementos HTML do site */
-* {
-    margin: 0;  /* Remove as margens padrões que os navegadores colocam (aquele espaço branco em volta) */
-    padding: 0; /* Remove os preenchimentos padrões */
-    
-    /* BOX-SIZING: Essencial! Faz com que a borda e o padding não aumentem o tamanho final da caixa.
-       Se você define width: 300px, será 300px mesmo com borda. */
-    box-sizing: border-box; 
-
-    /* TIPOGRAFIA: Define a família de fontes para o site todo.
-       Se o PC não tiver 'Segoe UI', tenta 'Tahoma', e assim por diante. */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* COMPORTAMENTO DO HTML */
-html {
-    /* SCROLL SUAVE: Faz a página deslizar bonitinho quando clica no menu,
-       em vez de pular seco para a seção. */
-    scroll-behavior: smooth;
-}
-
-/* ==========================================================================
-   VARIÁVEIS DE CORES (CSS VARIABLES)
-   ========================================================================== */
-/* :ROOT representa o elemento de nível mais alto (a raiz). 
-   Declarar variáveis aqui permite usá-las em qualquer lugar do arquivo. */
+/* --- VARIÁVEIS (Identidade Visual Corporativa) --- */
 :root {
-    /* --nome-da-variavel: valor; */
-    --primary-color: #007FFF; /* Azul vibrante (Cor da marca) */
-    --bg-dark: #121212;       /* Preto suave (Melhor para leitura que preto #000) */
-    --bg-card: #1e1e1e;       /* Cinza escuro para diferenciar cards do fundo */
-    --text-light: #f5f5f5;    /* Branco gelo (Texto principal) */
+    --primary: #193d8f;       /* Azul Microsoft/Enterprise */
+    --secondary: #002a5c;     /* Azul Marinho Profundo */
+    --accent: #00d4ff;        /* Azul Claro (Detalhes) */
+    --text: #333333;          /* Cinza Escuro (Texto) */
+    --light-bg: #f4f7f6;      /* Fundo Cinza Gelo */
+    --white: #ffffff;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* CORPO DO SITE */
-body {
-    /* Usando a variável var(--nome) para aplicar a cor */
-    background-color: var(--bg-dark); 
-    color: var(--text-light);
-}
-
-/* ==========================================================================
-   CABEÇALHO / HEADER (AULA 6 - FLEXBOX)
-   ========================================================================== */
-header {
-    background-color: #000;
-    padding: 20px 50px; /* 20px em cima/baixo, 50px nos lados */
+/* --- RESET BÁSICO --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { 
+    /* 1. Ativa a rolagem suave nativa do navegador */
+    scroll-behavior: smooth; 
     
-    /* FLEXBOX: O comando mágico para layouts */
-    display: flex;             /* Ativa o modo flexível */
-    justify-content: space-between; /* Joga a logo p/ esquerda e menu p/ direita (cria espaço entre eles) */
-    align-items: center;       /* Alinha verticalmente no centro (o texto fica na mesma linha da logo) */
-    
-    /* MENU FIXO (STICKY HEADER) */
-    position: fixed; /* Descola o menu da página e cola na janela do navegador */
-    width: 100%;     /* Garante que o menu ocupe a largura total da tela */
-    top: 0;          /* Gruda no teto da página */
-    
-    /* Bordinha embaixo para estilo */
-    border-bottom: 2px solid var(--primary-color);
+    /* 2. O PULO DO GATO: Compensa a altura do cabeçalho fixo.
+       Sem isso, ao clicar no menu, o título da seção fica escondido atrás da barra preta.
+       Coloquei 100px para garantir (altura do menu + um respiro). */
+    scroll-padding-top: 100px;
 }
 
-/* LINKS DE NAVEGAÇÃO (MENU) */
-nav a {
-    color: #fff;
-    text-decoration: none; /* Remove o sublinhado padrão dos links */
-    margin-left: 20px;     /* Dá um espaço à esquerda de cada link */
-    font-weight: 500;      /* Espessura da fonte média */
-    
-    /* TRANSIÇÃO: Qualquer mudança nesse elemento vai demorar 0.3s para acontecer (suavidade) */
-    transition: 0.3s;
-}
+body { font-family: var(--font-main); color: var(--text); line-height: 1.6; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
 
-/* ESTADO HOVER (QUANDO O MOUSE PASSA EM CIMA) */
-nav a:hover {
-    color: var(--primary-color); /* Muda a cor para azul */
-}
+/* --- UTILITÁRIOS DE LAYOUT --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.text-center { text-align: center; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.section-padding { padding: 80px 0; }
+.bg-light { background-color: var(--light-bg); }
+.mt-50 { margin-top: 50px; }
 
-/* ==========================================================================
-   SEÇÃO HERO / CAPA (AULA 4 e 5)
-   ========================================================================== */
-.hero {
-    height: 100vh; /* Viewport Height: Ocupa 100% da altura da tela do usuário */
-    
-    /* Centralizando tudo no meio da tela cheia com Flexbox */
-    display: flex;
-    justify-content: center; /* Alinha horizontalmente no centro */
-    align-items: center;     /* Alinha verticalmente no centro */
-    text-align: center;      /* Garante que o texto dentro da div fique centralizado */
-    
-    /* BACKGROUND COM DEGRADÊ (OVERLAY) */
-    /* A função linear-gradient cria uma camada preta transparente (0.7) por cima da imagem.
-       Isso serve para o texto branco ficar legível. */
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-    
-    background-size: cover;     /* Faz a imagem cobrir todo o espaço sem distorcer */
-    background-position: center; /* Foca no centro da imagem */
-}
-
-.hero h1 {
-    font-size: 3rem; /* Título bem grande */
-    margin-bottom: 20px; /* Espaço embaixo do título */
-}
-
-/* BOTÃO DE CHAMADA PARA AÇÃO (CTA) */
-.cta-button {
-    background-color: var(--primary-color);
-    color: #000;          /* Texto preto para contraste com o azul */
-    padding: 15px 30px;   /* Botão gordinho */
-    text-decoration: none; /* Sem sublinhado */
-    font-weight: bold;
-    border-radius: 5px;   /* Bordas levemente arredondadas */
-    display: inline-block; /* Permite aplicar margin e padding corretamente em links */
-    margin-top: 20px;
-}
-
-/* ==========================================================================
-   CONFIGURAÇÕES GERAIS DAS SEÇÕES
-   ========================================================================== */
-.container {
-    padding: 80px 10%; /* 80px em cima/baixo, 10% nas laterais (para não colar na borda) */
-    text-align: center;
-}
-
-h2 {
-    color: var(--primary-color); /* Títulos das seções em azul */
-    margin-bottom: 40px;/* Espaço embaixo do título */
-    font-size: 2rem; /* Tamanho do título */
-}
-
-/* ==========================================================================
-   CARDS DE SERVIÇOS (AULA 6 - BOX MODEL & LAYOUT)
-   ========================================================================== */
-.cards-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;       /* Cria um "buraco" de 20px entre os cards automaticamente */
-    flex-wrap: wrap; /* RESPONSIVIDADE: Se não couber na tela, joga o card para a linha de baixo */
-}
-
-/* A CAIXA DO CARD INDIVIDUAL */
-.card {
-    background-color: var(--bg-card); /* Fundo cinza escuro */
-    padding: 30px;        /* Espaço interno para o texto não colar na borda */
-    border-radius: 10px;  /* Cantos arredondados */
-    width: 300px;         /* Largura fixa do card */
-    border: 1px solid #333; /* Borda sutil */
-    
-    /* Prepara o card para ser animado */
-    transition: transform 0.3s;
-}
-
-/* ANIMAÇÃO DO CARD */
-.card:hover {
-    transform: translateY(-20px); /* Move o elemento 10px para CIMA no eixo Y (negativo sobe) */
-    border-color: var(--primary-color); /* A borda acende em azul */
-}
-
-/* ==========================================================================
-   FORMULÁRIO DE CONTATO (AULA 7)
-   ========================================================================== */
-
-form {
-    max-width: 500px; /* O formulário não cresce mais que 500px */
-    margin: 0 auto;   /* Centraliza o bloco do formulário na tela (0 em cima/baixo, auto nos lados) */
-    display: flex;
-    flex-direction: column; /* Coloca input embaixo de input (pilha) */
-    text-align: left; /* Textos das etiquetas alinhados à esquerda */
-}
-
-input, textarea {
-    padding: 10px;
-    margin-bottom: 15px; /* Espaço entre os campos */
+/* --- BOTÕES --- */
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 12px 30px;
     border-radius: 5px;
-    border: none;
-    font-family: inherit; /* Usa a mesma fonte do site */
+    font-weight: 600;
 }
+.btn-primary:hover { background-color: var(--secondary); }
 
-/* BOTÃO DE ENVIAR */
-button {
-    padding: 15px;
-    background-color: var(--primary-color);
-    border: none;
-    font-weight: bold; /* Deixa o texto em negrito */
-    cursor: pointer; /* Muda o mouse para a "mãozinha" */
-    font-size: 1rem;
-    transition: 0.3s;
+.btn-outline {
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-left: 10px;
 }
+.btn-outline:hover { background-color: var(--white); color: var(--primary); }
 
-button:hover {
-    background-color: #fff; /* Fica branco ao passar o mouse */
-}
+/* --- CORREÇÃO DO BOTÃO DO MENU --- */
+
+/* Estado Normal do Botão */
+/* --- BOTÃO DESTAQUE NO MENU (SOLICITAR PROPOSTA) --- */
+
+/* --- BOTÃO DESTAQUE NO MENU (SOLICITAR PROPOSTA) --- */
 
 /* ==========================================================================
-   RODAPÉ / FOOTER BÁSICO
+   BOTÃO DESTAQUE NO MENU (SOLICITAR PROPOSTA) - CORRIGIDO
    ========================================================================== */
-footer {
-    background-color: #000;
+
+.menu .btn-nav {
+    /* Cores Iniciais: Fundo Azul, Texto Branco */
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+    border: 2px solid var(--primary) !important;
+    
+    padding: 10px 22px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    text-transform: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 10px rgba(0, 86, 179, 0.2);
+}
+
+/* Hover: Muda para Azul Accent (Claro) */
+.menu .btn-nav:hover {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: var(--secondary) !important; /* Texto escurece para leitura no azul claro */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Efeito de Botão Apertado (Click) */
+.menu .btn-nav:active {
+    transform: translateY(1px) scale(0.98); /* "Afunda" levemente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.1s ease !important;
+}
+
+/* Garante que não apareça linha embaixo no hover */
+.menu .btn-nav::after { 
+    display: none !important; 
+}
+
+/* --- TOP BAR & HEADER --- */
+.top-bar { background-color: #333333; color: var(--white); padding: 10px 0; font-size: 0.9rem; }
+.top-bar span { margin-right: 20px; }
+.top-bar i { margin-right: 5px; color: var(--accent); }
+
+/* ==========================================================================
+   HEADER & NAVEGAÇÃO (GLASSMORPHISM PRETO)
+   ========================================================================== */
+header { 
+    background: rgba(11, 17, 26, 0.95); /* Preto profundo com leve transparência */
+    backdrop-filter: blur(10px);        /* Efeito de vidro desfocado */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
+    /* A borda azul neon que conecta a marca */
+    border-bottom: 3px solid var(--primary); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste sutil na Logo */
+.logo img { 
+    height: 48px; 
+    width: auto; 
+    transition: transform 0.3s ease;
+}
+.logo img:hover { transform: scale(1.03); }
+
+/* Menu de Navegação Premium */
+.menu { display: flex; align-items: center; gap: 35px; }
+
+.menu a { 
+    color: rgba(255, 255, 255, 0.85); 
+    font-weight: 500; 
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Underline animado moderno */
+.menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.menu a:hover { color: var(--accent); }
+.menu a:hover::after { width: 100%; }
+
+/* Botão de Destaque no Menu */
+.menu .btn-nav {
+    background: transparent;
+    border: 1.5px solid var(--primary);
+    color: var(--white) !important;
+    padding: 8px 22px;
+    border-radius: 6px;
+    background: rgba(0, 86, 179, 0.15);
+    transition: all 0.3s ease;
+}
+
+.menu .btn-nav:hover {
+    background: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 86, 179, 0.4);
+    transform: translateY(-2px);
+}
+.menu .btn-nav::after { display: none; } /* Remove a linha do hover no botão */
+
+.logo h1 { font-size: 1.8rem; color: var(--secondary); line-height: 1; }
+.logo h1 span { color: var(--primary); }
+.logo small { font-size: 0.8rem; color: #666; letter-spacing: 1px; }
+
+.menu { display: flex; align-items: center; gap: 30px; }
+.menu a { color: #f4f7f6; font-weight: 500; }
+.menu a:hover { color: var(--accent); }
+.mobile-menu-icon { display: none; }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 600px;
+    background: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+}
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,42,92,0.9), rgba(0,86,179,0.7)); }
+.hero-content { position: relative; z-index: 2; }
+.hero h2 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
+.hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; }
+
+/* --- STATS SECTION --- */
+.stats { background-color: var(--accent); padding: 40px 0; margin-top: -50px; position: relative; z-index: 3; }
+.stat-item { text-align: center; color: var(--secondary); }
+.stat-item i { font-size: 2rem; margin-bottom: 10px; }
+.stat-item h3 { font-size: 2rem; font-weight: 800; }
+
+/* --- SOBRE --- */
+.sobre-text { text-align: justify;}
+.sobre-img img { border-radius: 10px; box-shadow: 20px 20px 0 var(--primary); }
+.sobre-text h6 { color: var(--primary); letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
+.sobre-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary); }
+.lista-check li { margin-bottom: 10px; font-weight: 500; }
+.lista-check i { color: #25d366; margin-right: 10px; }
+.btn-text { color: var(--primary); font-weight: 700; margin-top: 20px; display: inline-block; }
+
+/* ==========================================================================
+   SERVIÇOS (MODERNIZAÇÃO UI/UX)
+   ========================================================================== */
+
+/* Pequeno divisor estilizado */
+.divider { 
+    width: 60px; 
+    height: 4px; 
+    background: var(--primary); /* Use var(--primary-gradient) se tiver definido */
+    margin: 20px auto; 
+    border-radius: 2px;
+}
+
+/* O Cartão do Serviço */
+.card-servico {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 16px; /* Cantos mais suaves são tendência */
+    border: 1px solid rgba(0,0,0,0.04); /* Borda quase invisível para leveza */
     text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden; /* Garante que efeitos não vazem */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação elástica profissional */
+    z-index: 1;
 }
 
-/* ==========================================================================
-   BOTÃO WHATSAPP FLUTUANTE
-   ========================================================================== */
-.btn-whatsapp {
-    position: fixed; /* Elemento solto da página, fixo na janela */
-    bottom: 20px;    /* 20px de distância do chão */
-    right: 20px;     /* 20px de distância da direita */
-    z-index: 1000;   /* Z-INDEX: Garante que fique "por cima" de tudo (camada 1000) */
+/* Efeito de Sombra e Levantamento (Hover) */
+.card-servico:hover { 
+    transform: translateY(-12px); 
+    /* Sombra azulada difusa em vez de preta -> Muito mais moderno */
+    box-shadow: 0 20px 40px rgba(0, 86, 179, 0.12); 
+    border-color: rgba(0, 86, 179, 0.3);
+}
+
+/* Detalhe sutil: Uma borda colorida aparece no topo ao passar o mouse */
+.card-servico::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; 
+    width: 100%; height: 4px;
+    background: var(--primary);
+    transform: scaleX(0); /* Escondido inicialmente */
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.card-servico:hover::before {
+    transform: scaleX(1); /* Aparece deslizando */
+}
+
+/* O Container do Ícone (A grande mudança) */
+.icon-box { 
+    width: 80px; 
+    height: 80px;
+    margin: 0 auto 25px;
     
-    /* Dimensões */
-    width: 60px;
-    height: 60px;
+    /* Fundo sutil em vez de ícone solto */
+    background: rgba(0, 86, 179, 0.05); 
+    border-radius: 50%; /* Círculo perfeito */
     
-    /* Estilo */
-    background-color: #25d366; /* Cor da marca WhatsApp */
-    border-radius: 50%; /* Transforma o quadrado em um CÍRCULO perfeito */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
     
-    /* Centralizando o ícone dentro da bolinha */
+    font-size: 2rem; 
+    color: var(--primary);
+    transition: all 0.4s ease;
+}
+
+/* Animação do Ícone no Hover */
+.card-servico:hover .icon-box { 
+    background: var(--primary); /* O fundo fica azul sólido */
+    color: var(--white);        /* O ícone fica branco */
+    transform: rotateY(180deg) scale(1.1); /* Efeito 3D sutil */
+    box-shadow: 0 10px 20px rgba(0, 86, 179, 0.3);
+}
+
+/* Tipografia Refinada */
+.card-servico h3 { 
+    font-size: 1.25rem; 
+    font-weight: 700; 
+    margin-bottom: 12px; 
+    color: var(--secondary); /* Usa o azul escuro para contraste */
+}
+
+.card-servico p { 
+    font-size: 0.95rem; 
+    color: #666; /* Cinza suave para leitura */
+    line-height: 1.6;
+}
+
+/* --- CTA BANNER --- */
+.cta-banner { background-color: var(--secondary); padding: 60px 0; color: var(--white); }
+.btn-white { background: var(--white); color: var(--secondary); padding: 12px 30px; border-radius: 5px; font-weight: bold; }
+
+/* --- FORMULÁRIO E CONTATO (ATUALIZADO) --- */
+
+/* Coluna da Esquerda (Informações) */
+.contato-info h2 {
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+
+.info-item {
+    display: flex;          /* Alinha ícone e texto lado a lado */
+    align-items: center;    /* Centraliza verticalmente */
+    gap: 20px;              /* Espaço entre ícone e texto */
+    margin-bottom: 30px;    /* Espaço entre os itens */
+}
+
+/* A bolinha branca ao redor do ícone */
+.icon-box-small {
+    width: 50px;
+    height: 50px;
+    background-color: var(--white);
+    border-radius: 50%;     /* Deixa redondo */
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* Sombra projetada */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Sombra suave */
+    flex-shrink: 0;         /* Garante que não amasse em telas pequenas */
 }
 
-/* Animação do botão WhatsApp */
-.btn-whatsapp:hover {
-    transform: scale(1.1); /* Aumenta o tamanho em 10% (zoom) */
-    background-color: #128c7e; /* Muda para um verde mais escuro */
+.icon-box-small i {
+    font-size: 1.2rem;
+    color: var(--primary);
 }
 
-/* Ícone SVG ou IMG dentro do botão */
-.btn-whatsapp img {
-    width: 35px;
-    height: 35px;
+/* Estilo dos Links (Email e Zap) */
+.link-contato {
+    color: inherit;         /* Mantém a cor original do texto (cinza) */
+    text-decoration: none;  /* Garante que não tenha linha embaixo no estado normal */
+    font-weight: 500;
+    transition: 0.3s;       /* Suaviza a troca de cor */
 }
+
+.link-contato:hover {
+    color: var(--secondary); /* Muda para o Azul Secundário (Escuro) */
+    text-decoration: none;   /* REMOVE a linha embaixo ao passar o mouse */
+}
+
+
+/* Coluna da Direita (O Formulário em si) */
+.form-corp {
+    background: var(--white);
+    padding: 40px;          /* Espaço interno grande */
+    border-radius: 10px;    /* Cantos arredondados */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Sombra para destacar do fundo cinza */
+}
+
+/* Espaço entre os inputs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Estilo dos Campos de Texto */
+.form-corp input, 
+.form-corp select, 
+.form-corp textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    font-family: inherit;   /* Usa a mesma fonte do site */
+    font-size: 1rem;
+    background-color: #f9f9f9; /* Fundo levemente cinza */
+    transition: 0.3s;       /* Animação suave ao clicar */
+    color: var(--text);
+}
+
+/* Efeito ao clicar no campo (Foco) */
+.form-corp input:focus, 
+.form-corp select:focus, 
+.form-corp textarea:focus {
+    outline: none;
+    border-color: var(--primary); /* Borda fica azul */
+    background-color: #fff;       /* Fundo fica branco */
+    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.1); /* Brilho externo suave */
+}
+
+/* Botão de Enviar */
+.form-corp button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
 
 /* ==========================================================================
-   ATUALIZAÇÃO DO RODAPÉ (COM ÍCONES SOCIAIS)
+   FOOTER (IDENTIDADE UNIFICADA & COMPACTO)
    ========================================================================== */
-/* Nota: Este bloco sobrescreve ou complementa o footer anterior */
-footer {
-    background-color: #000;
-    text-align: center;
-    padding: 40px 20px;
-    margin-top: 50px;
-    border-top: 1px solid #333; /* Linha fina separando o footer */
+footer { 
+    background: #111; 
+    color: #aaa; 
+    padding-top: 5px; 
 }
 
-.footer-content p {
-    color: #888; /* Texto cinza para menos destaque */
-    margin-bottom: 20px;
-    font-size: 0.9rem;
+.footer-content { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding-bottom: 5px; 
+    border-bottom: 1px solid #333; 
 }
 
-/* ESTILO DOS ÍCONES (CONTAINER) */
-.social-icons {
-    display: flex;
-    justify-content: center; /* Centraliza os ícones na tela */
-    gap: 20px; /* Espaço entre cada ícone */
+.footer-logo h2 { color: var(--white); }
+.footer-logo span { color: var(--primary); }
+
+.social-links a { 
+    font-size: 1.5rem; 
+    color: var(--white); 
+    margin-left: 20px; 
 }
 
-/* ESTILO DOS LINKS DOS ÍCONES (FontAwesome) */
-.social-icons a {
-    color: #fff; /* Começa branco */
-    font-size: 1.8rem; /* Tamanho grande */
-    transition: transform 0.3s, color 0.3s; /* Anima cor e movimento */
+.social-links a:hover { 
+    color: var(--primary); 
 }
 
-/* EFEITO DE FLUTUAR NOS ÍCONES */
-.social-icons a:hover {
-    color: var(--primary-color); /* Fica azul */
-    transform: translateY(-5px); /* Sobe um pouquinho (levitação) */
+.copy { 
+    text-align: center; 
+    padding: 5px; 
+    font-size: 0.9rem; 
+}
+
+
+/* --- BOTÃO FLUTUANTE WHATSAPP --- */
+.whatsapp-float {
+    position: fixed; bottom: 20px; right: 20px; background: #25d366; color: #fff; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 2000;
+}
+.whatsapp-float:hover { background: #1da851; transform: scale(1.1); }
+
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+    .menu { display: none; } /* Simplificado para aula, o ideal seria JS para toggle */
+    .mobile-menu-icon { display: block; font-size: 1.5rem; }
+    .hero h2 { font-size: 2.2rem; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .flex-between { flex-direction: column; gap: 20px; text-align: center; }
+    .stats { margin-top: 0; }
 }
